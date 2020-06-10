@@ -77,11 +77,89 @@ require_relative '../config/environment.rb'
 # puts Ingredient.find_all_by_name("Sugar")
 
 
+puts "\n\n\n------------------------LYFT TESTS-------------------------"
+jim = Driver.new("Jim Halpert")
+pam = Driver.new("Pam Beasley")
+mike = Driver.new("Michael Scott")
+dwight = Driver.new("Dwight Schrute")
 
+leslie = Passenger.new("Leslie Knope")
+ron = Passenger.new("Ron Swanson")
+tom = Passenger.new("Tom Haverford")
+
+leslie_jim = Ride.new(leslie, jim, 3.1)
+leslie_pam = Ride.new(leslie, pam, 13.1)
+leslie_mike = Ride.new(leslie, mike, 26.2)
+leslie_dwight = Ride.new(leslie, dwight, 65.2)
+
+ron_mike = Ride.new(ron, mike, 6.2)
+ron_jim = Ride.new(ron, jim, 20)
+
+tom_pam = Ride.new(tom, pam, 5)
+
+puts "\n\n\n------------------------Driver.all Test-------------------------\n\n"
+  print Driver.all
+  puts "\n"
+  puts Driver.all.include?(jim)
+  puts !Driver.all.include?(ron)
+
+puts "\n\n\n------------------------Passenger.all Test-------------------------\n\n"
+  print Passenger.all
+  puts "\n"
+  puts Passenger.all.include?(leslie)
+  puts !Passenger.all.include?(mike)
+puts "\n\n\n------------------------Ride.all Test-------------------------\n\n"
+  print Ride.all
+  puts "\n"
+  puts Ride.all.include?(ron_mike)
+puts "\n\n\n------------------------Ride.passenger Test-------------------------\n\n"
+  print tom_pam.passenger
+  puts "\n"
+  puts tom_pam.passenger == tom
+puts "\n\n\n------------------------Ride.driver Test-------------------------\n\n"
+  print tom_pam.driver
+  puts "\n"
+  puts tom_pam.driver == pam
+puts "\n\n\n------------------------Passenger.rides Test-------------------------\n\n"
+  print leslie.rides
+  puts "\n"
+  puts leslie.rides.include?(leslie_jim)
+  puts !leslie.rides.include?(ron_mike)
+puts "\n\n\n------------------------Passenger.drivers Test-------------------------\n\n"
+  print ron.drivers
+  puts "\n"
+  puts ron.drivers.include?(jim)
+  puts !ron.drivers.include?(pam)
+puts "\n\n\n------------------------Driver.rides Test-------------------------\n\n"
+  print mike.rides
+  puts "\n"
+  puts mike.rides.include?(ron_mike)
+  puts !mike.rides.include?(tom_pam)
+puts "\n\n\n------------------------Driver.passengers Test-------------------------\n\n"
+  print mike.passengers
+  puts "\n"
+  puts mike.passengers.include?(ron)
+  puts !mike.passengers.include?(tom)
+puts "\n\n\n------------------------Ride.average_distance Test-------------------------\n\n"
+  puts Ride.average_distance
+puts "\n\n\n------------------------Passenger.total_distance Test-------------------------\n\n"
+  puts leslie.total_distance
+puts "\n\n\n------------------------Passenger.premium_members Test-------------------------\n\n"
+  print Passenger.premium_members
+puts "\n\n\n------------------------Driver.mileage_cap Test-------------------------\n\n"
+  puts mike.total_distance
+  puts jim.total_distance
+  puts pam.total_distance
+  puts dwight.total_distance
+  print Driver.mileage_cap(70)
+  print "----------"
+  puts "\n"
+  print Driver.mileage_cap(20)
+puts "\n\n\n------------------------END-------------------------\n\n"
 
 
 def reload
   load 'config/environment.rb'
 end
 
-Pry.start
+#Pry.start
